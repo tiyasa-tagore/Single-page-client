@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Minutes</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 0.9rem;
+        }
+        .container {
+            background-color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            font-weight: 600;
+        }
+        .required::after {
+            content: '*';
+            color: red;
+        }
+        .custom-radio {
+            padding-top: 0.3rem;
+        }
+        .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+            color: #fff;
+            border-color: #007bff;
+            background-color: #007bff;
+        }
+        .btn-outline-primary {
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+        .btn-outline-primary:hover {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .form-control[readonly] {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .table thead th {
+            border-top: none;
+        }
+        .table-responsive {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4 class= mb-4">Meeting Minutes</h4>
+    
+    <div class="form-row mb-3">
+        <div class="col-sm-12">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="corporate" name="meetingType" class="custom-control-input">
+                <label class="custom-control-label" for="corporate">Corporate</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="individual" name="meetingType" class="custom-control-input" checked>
+                <label class="custom-control-label" for="individual">Individual</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-row mb-3">
+        <div class="form-group col-md-3">
+            <label for="customerName" class="required">Customer Name</label>
+            <select id="customerName" class="form-control">
+                <option selected>Select customer name</option>
+                <!-- Options would be dynamically loaded here -->
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="date" class="required">Date</label>
+            <input type="date" class="form-control" id="date" value="2023-03-20">
+        </div>
+       <div class="form-group col-md-2">
+            <label for="time" class="required">Time</label>
+            <input type="time" class="form-control" id="time" value="09:00">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="meetingPlace" class="required">Meeting Place</label>
+            <input type="text" class="form-control" id="meetingPlace">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="attendsClient" class="required">Attends From Client Side</label>
+            <input type="text" class="form-control" id="attendsClient">
+        </div>
+    </div>
+
+    <div class="form-row mb-3">
+        <div class="form-group col-md-3">
+            <label for="attendsHost" class="required">Attends From Host Side</label>
+            <input type="text" class="form-control" id="attendsHost">
+               </div>
+        <div class="form-group col-md-3">
+            <label for="agenda" class="required">Meeting Agenda</label>
+            <input type="text" class="form-control" id="agenda" placeholder="Meeting agenda">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="discussion" class="required">Meeting Discussion</label>
+            <input type="text" class="form-control" id="discussion" placeholder="Meeting discussion">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="decision" class="required">Meeting Decision</label>
+            <input type="text" class="form-control" id="decision" placeholder="Meeting decision">
+        </div>
+    </div>
+
+    <div class="form-row mb-3">
+        <div class="form-group col-md-5">
+            <label for="productService">Interested Product/Service</label>
+            <select id="productService" class="form-control">
+                <option selected>Select product/service interested</option>
+                <!-- Options will be dynamically loaded here -->
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="quantity">Quantity</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Quantity">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="unit">Unit</label>
+            <select id="unit" class="form-control">
+                <option selected>Unit</option>
+                <!-- Options for units go here -->
+            </select>
+        </div>
+        <br>
+        <div class="form-group col-md-3 ">
+            <button type="button" class="btn btn-outline-secondary"> Add</button>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">SL#</th>
+                            <th scope="col">Interested Product/Service Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="text-center">No matching records found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-12 ">
+            <button type="submit" class="btn btn-outline-secondary ">Save</button>
+            <button type="button" class="btn btn-outline-secondary">Refresh</button>
+        </div>
+    </div>
+</form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
+
